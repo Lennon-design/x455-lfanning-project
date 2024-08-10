@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Dusty Rose</title>
+    <title style="font-family: ibm plex mono;">Dusty Rose</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./css/w3.css" />
@@ -13,6 +13,31 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <style>
+      /* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
       .pink,.w3-hover-pink:hover{color:#000000!important;background-color:#F1862F!important}
       body,
       .lennon-peach,.w3-hover-sand:hover{color:#000!important;background-color:#F4AA85!important}
@@ -35,6 +60,27 @@
       .menu {
         display: none;
       }
+      #row2b {
+        display: none;
+      }
+      /*
+      @media screen and (max-width: 600px) {
+        #r1c1,
+        #r1c2 {
+          width: 100%;
+        }
+        #row2a {
+          display: none;
+        }
+        #row2b {
+          display: block;
+        }
+      }
+      */
+      .my-scrolling {
+        height: 300px;
+        overflow: auto;
+      }
     </style>
   </head>
   <body>
@@ -56,29 +102,35 @@
           <a href="#" class="w3-button w3-block pink">Dusty Rose</a>
       </div>
       <br>
-        <div class="w3-col s3">
+        <div class="w3-col s2">
           <!-- added w3-hide-small class for mobile version -->
           <a href="#about" class="w3-button w3-block w3-hide-small"
             >Custom Bundles</a
           >
         </div>
 
-        <div class="w3-col s3">
+        <div class="w3-col s2">
           <!-- added w3-hide-small class for mobile version-->
           <a href="#menu" class="w3-button w3-block w3-hide-small"
-            >Size Chart</a
+            >Featured Picks</a
           >
         </div>
-        <div class="w3-col s3">
+        <div class="w3-col s2">
           <!-- added w3-hide-small class for mobile version -->
           <a href="#where" class="w3-button w3-block w3-hide-small"
             >Videos</a
           >
         </div>
-        <div class="w3-col s3">
+        <div class="w3-col s2">
           <!-- added w3-hide-small class for mobile version -->
-          <a href="#where" class="w3-button w3-block w3-hide-small"
-            >Seasonal Drop</a
+          <a href="#Stocklog" class="w3-button w3-block w3-hide-small"
+            >Stock Log</a
+          >
+        </div>
+        <div class="w3-col s2">
+          <!-- added w3-hide-small class for mobile version -->
+          <a href="#Stockists" class="w3-button w3-block w3-hide-small"
+            >Stockists</a
           >
         </div>
       </div>
@@ -95,19 +147,31 @@
         href="#about"
         class="w3-bar-item w3-button w3-padding-large"
         onclick="myFunction()"
-        >ABOUT</a
+        >Custom Bundles</a
       >
       <a
         href="#menu"
         class="w3-bar-item w3-button w3-padding-large"
         onclick="myFunction()"
-        >MENU</a
+        >Featured Picks</a
       >
       <a
         href="#where"
         class="w3-bar-item w3-button w3-padding-large"
         onclick="myFunction()"
-        >WHERE</a
+        >Videos</a
+      >
+      <a
+        href="#Stocklog"
+        class="w3-bar-item w3-button w3-padding-large"
+        onclick="myFunction()"
+        >Stock Log</a
+      >
+      <a
+        href="#Stockists"
+        class="w3-bar-item w3-button w3-padding-large"
+        onclick="myFunction()"
+        >Stockists</a
       >
       <!-- end added for mobile version update href="" -->
     </div>
@@ -117,7 +181,6 @@
       <div
         class="w3-display-bottomleft w3-center w3-padding-large w3-hide-small"
       >
-        <span class="w3-tag">Open from 6am to 5pm</span>
       </div>
       <div class="w3-display-middle w3-center">
         <span class="w3-text-white" style="font-size: 90px"><br /></span>
@@ -132,10 +195,10 @@
     <div class="w3-large">
       <!-- About Container -->
       <div class="w3-container w3-center" id="about">
-        <div class="w3-content" style="max-width: 700px">
-          <h5 class="w3-center w3-padding-64">
+        <div class="w3-content w3-padding-48" style="max-width: 700px">
+          <h2 class="w3-center w3-padding-64">
             <span class="lennon-badge w3-wide" style="font-family: ibm plex mono;">Custom Bundles</span>
-          </h5>
+          </h2>
           <p>
             These custom bundles are pieced together to create hand-tailored outfits. Each bundle is unique and priced differently depending on which pieces are in the bundle.
           </p>
@@ -166,159 +229,405 @@
           />
           <p style="font-family: ibm plex mono;">Bundle 3 - <strong>$300</strong></p>
           <br>
+          <p>
+            Bundles are not personalizable, each bundle is already established. New bundles will be released at the beginning of the month, be sure to check back in to see what new bundles are created. Each bundle will come with a card explaining the selected outfit: where the inspiration for the outfit came from, what the stylistic sensibilities for the bundle are, and a suggested way to wear the outfit. To see general inspiration for outfit direciton visit <a href="https://www.are.na">our are.na page</a> and <a href="https://www.depop.com">our depop page</a>
+          </p>
         </div>
       </div>
-
+</div>
       <!-- Menu Container -->
       <div class="w3-container" id="menu">
-        <div class="w3-content" style="max-width: 700px">
-          <h5 class="w3-center w3-padding-64">
-            <span class="lennon-badge w3-wide" style="font-family: ibm plex mono;">Size Chart</span>
-          </h5>
-
-          <div <body>
-            <table style="font-size: 16px; margin: 0 auto" font-family="ibm-plex-mono-regular">
-                <tr>
-                    <th style="border: 0px solid rgb(227, 139, 68);color: rgb(96, 157, 67);"></th>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">36</th>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">37</th>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">38</th>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">39</th>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">40</th>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">41</th>
-                </tr>
-                <tr>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">Foot length</th>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">23,4</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">24</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">24,6</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">25,2</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">25,8</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">26,4</td>
-                </tr>
-                <tr>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">Heel</th>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">4,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">4,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">4,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">4,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">4,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">4,5</td>
-                </tr>
-                <tr>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">USA</th>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">6</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">6,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">7,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">8,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">9</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">9,5</td>
-                </tr>
-                <tr>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">UK</th>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">3,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">4</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">6</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">6,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">7</td>
-                </tr>
-                <tr>
-                    <th style="border: 1px solid rgb(227, 139, 68);color: rgb(132, 84, 48);">Japan</th>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">22</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">22,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">23,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">24,5</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">25</td>
-                    <td style="border: 1px solid rgb(227, 139, 68);color: rgb(96, 157, 67);">25,5</td>
-                </tr>
-
-            </table>
-        </body>
-
-      <!-- Contact/Area Container -->
-      <div class="w3-container" id="where" style="padding-bottom: 32px">
-        <div class="w3-content" style="max-width: 700px">
-          <h5 class="w3-center w3-padding-64">
-            <span class="lennon-badge w3-wide" style="font-family: ibm plex mono;">Videos</span>
-          </h5>
-          <p>Find us at some address at some place.</p>
-          <img src="/w3images/map.jpg" class="w3-image" style="width: 100%" />
-          <p>
-            <span class="w3-tag">FYI!</span> We offer full-service catering for
-            any event, large or small. We understand your needs and we will
-            cater the food to satisfy the biggerst criteria of them all, both
-            look and taste.
-          </p>
-          <p>
-            <strong>Reserve</strong> a table, ask for today's special or just
-            send us a message:
-          </p>
-          <form action="/action_page.php" target="_blank">
-            <p>
-              <input
-                class="w3-input w3-padding-16 w3-border"
-                type="text"
-                placeholder="Name"
-                required
-                name="Name"
-              />
-            </p>
-            <p>
-              <input
-                class="w3-input w3-padding-16 w3-border"
-                type="number"
-                placeholder="How many people"
-                required
-                name="People"
-              />
-            </p>
-            <p>
-              <input
-                class="w3-input w3-padding-16 w3-border"
-                type="datetime-local"
-                placeholder="Date and time"
-                required
-                name="date"
-                value="2020-11-16T20:00"
-              />
-            </p>
-            <p>
-              <input
-                class="w3-input w3-padding-16 w3-border"
-                type="text"
-                placeholder="Message \ Special requirements"
-                required
-                name="Message"
-              />
-            </p>
-            <p>
-              <button class="w3-button w3-black" type="submit">
-                SEND MESSAGE
-              </button>
-            </p>
-          </form>
+        <div class="w3-content w3-padding-48" style="max-width: 700px">
+          <h2 class="w3-center w3-padding-64">
+            <span class="lennon-badge w3-wide" style="font-family: ibm plex mono;">Featured Picks</span>
+          </h2>
+          <div class="w3-container">
+            <!-- begin carousel slide show -->
+            <!-- step 1: add images for slideshow -->
+            <img class="mySlides" src="images/carousel-1-resize.jpg" style="width: 100%" />
+            <img  
+             class="mySlides"
+              src="images/carousel-2-resize.jpg"
+              style="width: 100%; display: none"
+            />
+            <img
+              class="mySlides"
+              src="images/carousel-3-resize.jpg"
+              style="width: 100%; display: none"
+            />
+            <img
+              class="mySlides"
+              src="images/carousel-1-resize.jpg"
+              style="width: 100%; display: none"
+            />
+          </div>
+          </div>
+        </div>
+          <br>
+          <div class="w3-container w3-center">
+            <div class="w3-row w3-center">
+              <div class="w3-col s4 w3-padding w3-sand"></div>
+              <div class="w3-col s4 w3-padding w3-sand">
+                <div
+                  class="w3-container lennon-peach w3-center"
+                  style="margin-left: -16px; margin-right: -16px; margin-top: -18px"
+                >
+                  <h2 style="font-family: ibm plex mono;">Featured Picks Details</h2>
+                </div>
+                <div class="my-scrolling" style="padding-right: 10px">
+                  <p>
+                    These featured items are specially chosen each month as favorited samples from our latest collection. These specially chosen items rotate every month. These pieces are purchaseable just like any other item however come at a premium as these pieces have been highlighted for either being rare, valuable, or hot items. This month's picks were found in the East Bay of the San Francisco Bay area, in pre-loved shops: some big, some smaller, all these pieces are vintage, of course.
+                  </p>
+                </div>
+              </div>
+              <div class="w3-col s4 w3-padding w3-sand"></div>
+          </div>
         </div>
       </div>
+      <!-- Contact/Area Container -->
+      <div class="w3-container w3-center" id="where" style="padding-bottom: 32px">
+       
+        <div class="w3-content w3-padding-48" style="max-width: 700px">
+          <h2 class="w3-center w3-padding-64">
+            <span class="lennon-badge w3-wide" style="font-family: ibm plex mono;">Videos of My Life</span>
+          </h2>
+          <div id="row1" class="w3-row">
+            <div id="row1" class="w3-row">
+              <h2 class="w3-center" style="font-family: ibm plex mono;"">A trip to the country</h2>
+              <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@funkybunny777/video/7286166790609145131" data-video-id="7286166790609145131" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@funkybunny777" href="https://www.tiktok.com/@funkybunny777?refer=embed">@funkybunny777</a> <p>Im ready for the commune </p> <a target="_blank" title="♬ Cerca De Ti - Hermanos Gutiérrez" href="https://www.tiktok.com/music/Cerca-De-Ti-7184906910200498178?refer=embed">♬ Cerca De Ti - Hermanos Gutiérrez</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>              <div id="r1c2" class="w3-col s6">
+              </div>
+            <div id="row1" class="w3-row">
+              <div id="row1" class="w3-row"><h2 class="w3-center" style="font-family: ibm plex mono;">Sunday at the lake</h2></div>
+                <p>
+                  <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@funkybunny777/video/7098041909192592686" data-video-id="7098041909192592686" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@funkybunny777" href="https://www.tiktok.com/@funkybunny777?refer=embed">@funkybunny777</a> <p>Sunday at the lake</p> <a target="_blank" title="♬ Originalton - Alex" href="https://www.tiktok.com/music/Originalton-6968882152465566469?refer=embed">♬ Originalton - Alex</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>                </p>
+                </div>
+                </div>
+            
+            <div id="row1" class="w3-row">
+              <div id="row1" class="w3-row">
+                <h2 class="w3-center" style="font-family: ibm plex mono;">Dinner party</h2>
+                <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@funkybunny777/video/7087295891350064427" data-video-id="7087295891350064427" style="max-width: 605px;min-width: 325px;" > <section> <a target="_blank" title="@funkybunny777" href="https://www.tiktok.com/@funkybunny777?refer=embed">@funkybunny777</a> <p>Hosting dinner parties for my intimate friends is my love language</p> <a target="_blank" title="♬ Saudade Vem Correndo - Stan Getz &#38; Luiz Bonfá" href="https://www.tiktok.com/music/Saudade-Vem-Correndo-6590213366558525446?refer=embed">♬ Saudade Vem Correndo - Stan Getz &#38; Luiz Bonfá</a> </section> </blockquote> <script async src="https://www.tiktok.com/embed.js"></script>                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w3-container w3-center" style="padding-bottom: 32px">
+        <button class="accordion">Why do we add videos?</button>
+<div class="panel">
+  <p>We feel like adding an intimate look into my life adds to the experience of buying from Dusty Rose. This gives you a better idea of who is picking out these pieces.</p>
+</div>
 
+<button class="accordion">What do these videos do?</button>
+<div class="panel">
+  <p>We hope these videos help you understand the effort and care we put into Dusty Rose. We value the integration and importance of clothing on how you can experience your everyday life.</p>
+</div>
+      </div>
+      
+    
+     <!-- Menu Section -->
+     <div class="w3-large">
+      <!-- About Container -->
+      <div class="w3-container w3-center" id="Stocklog">
+        <div class="w3-content w3-padding-48" style="max-width: 700px">
+          <h2 class="w3-center w3-padding-64">
+            <span class="lennon-badge w3-wide" style="font-family: ibm plex mono;">Current Stock</span>
+          </h2>
+      <h2 class="w3-center" style="font-family: ibm plex mono;">Stock Log</h2>
+      <!-- add sortable table -->
+      <!-- step 1: create a table with 4 columns -->
+      <!-- step 2: add javascrip and jquery to make the table sortable -->
+      <div class="w3-padding-large">
+        <table id="myTable" class="w3-table-all">
+          <thead>
+            <tr class="w3-brown">
+              <th>Photo</th>
+              <th>Type</th>
+              <th>Size</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tr class="w3-hover-sand">
+            <td><img src="images/gray-hoodie.jpeg" style="width: 120px" /></td>
+            <td>Gray Hoodie</td>
+            <td>M</td>
+            <td>$12</td>
+          </tr>
+          <tr class="w3-hover-sand">
+            <td>
+              <img src="images/bag.jpeg" style="width: 120px" />
+            </td>
+            <td>Black Puffer Bag</td>
+            <td>OS</td>
+            <td>$45</td>
+          </tr>
+          <tr class="w3-hover-sand">
+            <td><img src="images/jacket.jpeg" style="width: 120px" /></td>
+            <td>Green Puffer Jacket</td>
+            <td>XL</td>
+            <td>$18</td>
+          </tr>
+          <tr class="w3-hover-sand">
+            <td>
+              <img src="images/camo.jpeg" style="width: 120px" />
+            </td>
+            <td>Camo Jacket</td>
+            <td>XL</td>
+            <td>$18</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+      </div>
+     </div>
+    
+     <!-- Menu Section -->
+     <div class="w3-large">
+      <!-- About Container -->
+      <div class="w3-container w3-center" id="Stockists">
+        <div class="w3-content w3-padding-48" style="max-width: 700px">
+          <h2 class="w3-center w3-padding-64">
+            <span class="lennon-badge w3-wide" style="font-family: ibm plex mono;">Stockists</span>
+          </h2>
+      <h2 class="w3-center" style="font-family: ibm plex mono;">You can find Dusty Rose at the following stores:</h2>
+      <!-- lightbox-->
+      <div id="chef" class="w3-container w3-padding-top-64">
+        
+
+        <!-- step 1: add thumbnail image -->
+        <!-- step 2: add modal (background image and close button) -->
+        <div class="w3-row-padding" style="margin: 15px 0px">
+          <div class="w3-col s4">
+            <img
+              src="images/mercy-vintage.jpg"
+              style="width: 100%; cursor: zoom-in"
+              onclick="document.getElementById('modal01').style.display='block'"
+              class="w3-hover-shadow"
+            />
+          </div>
+          <div class="w3-col s4">
+            <img
+              src="images/moody-goose.jpg"
+              style="width: 100%; cursor: zoom-in"
+              onclick="document.getElementById('modal02').style.display='block'"
+              class="w3-hover-shadow"
+            />
+          </div>
+            <div class="w3-col s4">
+              <img
+                src="images/oakland-vintage-market.jpg"
+                style="width: 100%; cursor: zoom-in"
+                onclick="document.getElementById('modal03').style.display='block'"
+                class="w3-hover-shadow"
+              />
+            </div>
+            <div class="w3-col s4">
+              <img
+                src="images/re-love.jpg"
+                style="width: 100%; cursor: zoom-in"
+                onclick="document.getElementById('modal04').style.display='block'"
+                class="w3-hover-shadow"
+              />
+            </div>
+            <div class="w3-col s4">
+              <img
+                src="images/slant-vintage.jpg"
+                style="width: 100%; cursor: zoom-in"
+                onclick="document.getElementById('modal05').style.display='block'"
+                class="w3-hover-shadow"
+              />
+            </div>
+            <div class="w3-col s4">
+              <img
+                src="images/the-wardrobe-project.jpg"
+                style="width: 100%; cursor: zoom-in"
+                onclick="document.getElementById('modal06').style.display='block'"
+                class="w3-hover-shadow"
+              />
+            </div>
+            
+          </div>
+        </div>
+
+        <!-- add modal -->
+        <div id="modal01" class="w3-modal" onclick="this.style.display='none'">
+          <!-- add close button-->
+          <span
+            class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+            style="cursor: pointer"
+            >&times;</span
+          >
+          <!-- add modal background image -->
+          <div class="w3-modal-content w3-animate-zoom">
+            <h4 class="w3-center">Mercy Vintage</h4>
+            <img src="images/mercy-vintage.jpg" style="width: 100%" />
+          </div>
+        </div>
+     </div>
+          <!-- add modal -->
+        <div id="modal02" class="w3-modal" onclick="this.style.display='none'">
+          <!-- add close button-->
+          <span
+            class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+            style="cursor: pointer"
+            >&times;</span
+          >
+          <!-- add modal background image -->
+          <div class="w3-modal-content w3-animate-zoom">
+            <h4 class="w3-center">Moody Goose</h4>
+            <img src="images/moody-goose.jpg" style="width: 100%" />
+          </div>
+        </div>
+        <!-- add modal -->
+        <div id="modal03" class="w3-modal" onclick="this.style.display='none'">
+          <!-- add close button-->
+          <span
+            class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+            style="cursor: pointer"
+            >&times;</span
+          >
+          <!-- add modal background image -->
+          <div class="w3-modal-content w3-animate-zoom">
+            <h4 class="w3-center">Oakland Vintage Market</h4>
+            <img src="images/oakland-vintage-market.jpg" style="width: 100%" />
+          </div>
+      </div>
+    </div>
+    <!-- add modal -->
+    <div id="modal04" class="w3-modal" onclick="this.style.display='none'">
+      <!-- add close button-->
+      <span
+        class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+        style="cursor: pointer"
+        >&times;</span
+      >
+      <!-- add modal background image -->
+      <div class="w3-modal-content w3-animate-zoom">
+        <h4 class="w3-center">Re-Love</h4>
+        <img src="images/re-love.jpg" style="width: 100%" />
+      </div>
+  </div>
+</div>
+<!-- add modal -->
+<div id="modal05" class="w3-modal" onclick="this.style.display='none'">
+  <!-- add close button-->
+  <span
+    class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+    style="cursor: pointer"
+    >&times;</span
+  >
+  <!-- add modal background image -->
+  <div class="w3-modal-content w3-animate-zoom">
+    <h4 class="w3-center">Slant Vintage</h4>
+    <img src="images/slant-vintage.jpg" style="width: 100%" />
+  </div>
+</div>
+<!-- add modal -->
+<div id="modal06" class="w3-modal" onclick="this.style.display='none'">
+  <!-- add close button-->
+  <span
+    class="w3-text-white w3-xxlarge w3-hover-text-grey w3-container w3-display-topright"
+    style="cursor: pointer"
+    >&times;</span
+  >
+  <!-- add modal background image -->
+  <div class="w3-modal-content w3-animate-zoom">
+    <h4 class="w3-center">The Wardrobe Project</h4>
+    <img src="images/the-wardrobe-project.jpg" style="width: 100%" />
+  </div>
+</div>
+    
       <!-- End page content -->
     </div>
 
     <!-- Footer -->
     <footer class="w3-center w3-light-grey w3-padding-48 w3-large">
       <p>
-        Powered by
+        Follow us on 
         <a
-          href="https://www.w3schools.com/w3css/default.asp"
+          href="https://www.instagram.com/dustyrosevtg/"
           title="W3.CSS"
           target="_blank"
-          class="w3-hover-text-green"
-          >w3.css</a
+          class="w3-hover-text-pink"
+          >Instagram</a
         >
       </p>
     </footer>
 
     <script>
+      var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+    // begin added for sortable
+      $(document).ready(function () {
+        $("table#myTable").tablesorter({
+          sortList: [
+            [2, 1],
+          ] /* 1st number - column to sort, 2nd number - asending (2) or descending order (1) */,
+          CssAsc: "tablesorter-headerAsc",
+          CssDesc: "tablesorter-headerDesc",
+        });
+      });
+      // end added for sortable
+      // begin added for carousel
+      // step 2: add javascript to support carousel slideshow feature
+      var myIndex = 0;
+      carousel();
+      function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {
+          myIndex = 1;
+        }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 2000); // Change image every 2 seconds
+      }
+
+      // slideshow - carousel
+      function currentDiv(n) {
+        showDivs((slideIndex = n));
+        myIndex = n;
+      }
+
+      function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > x.length) {
+          slideIndex = 1;
+        }
+        if (n < 1) {
+          slideIndex = x.length;
+        }
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+          dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+        }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " w3-opacity-off";
+      }
+      // end added for carousel
       // Tabbed Menu
       function openMenu(evt, menuName) {
         var i, x, tablinks;
@@ -348,6 +657,7 @@
           x.className = x.className.replace(" w3-show", "");
         }
       }
+
 
       // When the user clicks anywhere outside of the modal, close it
       var modal = document.getElementById("ticketModal");
