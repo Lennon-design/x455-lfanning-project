@@ -4,6 +4,17 @@
     <title style="font-family: ibm plex mono;">Dusty Rose</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- instructor: added for sortable table begin -->
+     <!-- jquery.min.js should be loaded before jquery.tablesorter.min.js because tablesorter requires basice jquery -->
+     <script
+     type="text/JavaScript"
+     src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+   ></script>
+   <script
+     type="text/JavaScript"
+     src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.3/js/jquery.tablesorter.min.js"
+   ></script>
+   <!-- instructor: added for sortable table end -->
     <link rel="stylesheet" href="./css/w3.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,6 +95,7 @@
     </style>
   </head>
   <body>
+    
     <!-- Links (sit on top) -->
     <div class="w3-top">
       <div class="w3-row w3-padding lennon-peach">
@@ -133,6 +145,24 @@
             >Stockists</a
           >
         </div>
+        <!-- step 1 -->
+        <!-- added shopping cart and search icons -->
+        <!-- Font Awesome 4 reference : https://www.w3schools.com/icons/icons_reference.asp-->
+        <div>
+          <a class="w3-padding-large w3-hide-small w3-right"
+            ><i class="fa fa-shopping-basket w3-text-brown"></i
+          ></a>
+          <a class="w3-padding-large w3-hide-small w3-right"
+            ><i class="fa fa-search w3-text-brown"></i
+          ></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- step 3 -->
+    <!-- Sidebar on small screens when clicking the menu icon -->
+    <!-- Source: https://www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_startup -->
+    
       </div>
     </div>
 
@@ -173,6 +203,17 @@
         onclick="myFunction()"
         >Stockists</a
       >
+      <!-- step 1 -->
+        <!-- added shopping cart and search icons -->
+        <!-- Font Awesome 4 reference : https://www.w3schools.com/icons/icons_reference.asp-->
+        
+          <a class="w3-padding-large w3-right"
+            ><i class="fa fa-shopping-basket w3-text-brown"></i
+          ></a>
+          <a class="w3-padding-large w3-right"
+            ><i class="fa fa-search w3-text-brown"></i
+          ></a>
+        
       <!-- end added for mobile version update href="" -->
     </div>
 
@@ -266,7 +307,7 @@
           <br>
           <div class="w3-container w3-center">
             <div class="w3-row w3-center">
-              <div class="w3-col s4 w3-padding w3-sand"></div>
+              <div class="w3-col s4 w3-padding"></div>
               <div class="w3-col s4 w3-padding w3-sand">
                 <div
                   class="w3-container lennon-peach w3-center"
@@ -280,7 +321,7 @@
                   </p>
                 </div>
               </div>
-              <div class="w3-col s4 w3-padding w3-sand"></div>
+              <div class="w3-col s4 w3-padding"></div>
           </div>
         </div>
       </div>
@@ -555,118 +596,124 @@
     </footer>
 
     <script>
-      var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    /* Toggle between adding and removing the "active" class,
-    to highlight the button that controls the panel */
-    this.classList.toggle("active");
-
-    /* Toggle between hiding and showing the active panel */
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
-    // begin added for sortable
-      $(document).ready(function () {
-        $("table#myTable").tablesorter({
-          sortList: [
-            [2, 1],
-          ] /* 1st number - column to sort, 2nd number - asending (2) or descending order (1) */,
-          CssAsc: "tablesorter-headerAsc",
-          CssDesc: "tablesorter-headerDesc",
+      //i nstructor: rearraged javascript order to support different features
+        // begin added for carousel
+        // step 2: add javascript to support carousel slideshow feature
+        var myIndex = 0;
+        carousel();
+        function carousel() {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          myIndex++;
+          if (myIndex > x.length) {
+            myIndex = 1;
+          }
+          x[myIndex - 1].style.display = "block";
+          setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+  
+        // slideshow - carousel
+        function currentDiv(n) {
+          showDivs((slideIndex = n));
+          myIndex = n;
+        }
+  
+        function showDivs(n) {
+          var i;
+          var x = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("demo");
+          if (n > x.length) {
+            slideIndex = 1;
+          }
+          if (n < 1) {
+            slideIndex = x.length;
+          }
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
+          }
+          x[slideIndex - 1].style.display = "block";
+          dots[slideIndex - 1].className += " w3-opacity-off";
+        }
+        // end added for carousel
+  
+  
+        var acc = document.getElementsByClassName("accordion");
+  var i;
+  
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      //Toggle between adding and removing the "active" class,
+      //to highlight the button that controls the panel 
+      this.classList.toggle("active");
+  
+      // Toggle between hiding and showing the active panel 
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }
+  
+  // begin added for sortable
+  $(document).ready(function () {
+          $("table#myTable").tablesorter({
+            sortList: [
+              [2, 1],
+            ],
+            CssAsc: "tablesorter-headerAsc",
+            CssDesc: "tablesorter-headerDesc",
+          });
         });
-      });
-      // end added for sortable
-      // begin added for carousel
-      // step 2: add javascript to support carousel slideshow feature
-      var myIndex = 0;
-      carousel();
-      function carousel() {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none";
+        // end added for sortable
+        
+        // Tabbed Menu
+        function openMenu(evt, menuName) {
+          var i, x, tablinks;
+          x = document.getElementsByClassName("menu");
+          for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(
+              " w3-dark-grey",
+              ""
+            );
+          }
+          document.getElementById(menuName).style.display = "block";
+          evt.currentTarget.firstElementChild.className += " w3-dark-grey";
         }
-        myIndex++;
-        if (myIndex > x.length) {
-          myIndex = 1;
+        document.getElementById("myLink").click();
+  
+        // begin added for mobile version
+        // Used to toggle the menu on small screens when clicking on the menu button
+        function myFunction() {
+          var x = document.getElementById("navDemo");
+          if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+          } else {
+            x.className = x.className.replace(" w3-show", "");
+          }
         }
-        x[myIndex - 1].style.display = "block";
-        setTimeout(carousel, 2000); // Change image every 2 seconds
-      }
-
-      // slideshow - carousel
-      function currentDiv(n) {
-        showDivs((slideIndex = n));
-        myIndex = n;
-      }
-
-      function showDivs(n) {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        var dots = document.getElementsByClassName("demo");
-        if (n > x.length) {
-          slideIndex = 1;
-        }
-        if (n < 1) {
-          slideIndex = x.length;
-        }
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none";
-        }
-        for (i = 0; i < dots.length; i++) {
-          dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
-        }
-        x[slideIndex - 1].style.display = "block";
-        dots[slideIndex - 1].className += " w3-opacity-off";
-      }
-      // end added for carousel
-      // Tabbed Menu
-      function openMenu(evt, menuName) {
-        var i, x, tablinks;
-        x = document.getElementsByClassName("menu");
-        for (i = 0; i < x.length; i++) {
-          x[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablink");
-        for (i = 0; i < x.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(
-            " w3-dark-grey",
-            ""
-          );
-        }
-        document.getElementById(menuName).style.display = "block";
-        evt.currentTarget.firstElementChild.className += " w3-dark-grey";
-      }
-      document.getElementById("myLink").click();
-
-      // begin added for mobile version
-      // Used to toggle the menu on small screens when clicking on the menu button
-      function myFunction() {
-        var x = document.getElementById("navDemo");
-        if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-        } else {
-          x.className = x.className.replace(" w3-show", "");
-        }
-      }
-
-
-      // When the user clicks anywhere outside of the modal, close it
-      var modal = document.getElementById("ticketModal");
-      window.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      };
-      // end added for mobile version
-    </script>
+  
+  
+        // When the user clicks anywhere outside of the modal, close it
+        var modal = document.getElementById("ticketModal");
+        window.onclick = function (event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        };
+        // end added for mobile version
+        
+      </script>
   </body>
 </html>
